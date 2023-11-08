@@ -1,0 +1,49 @@
+# Query - Me sirve solo para hacer consultas a la db, más no para hacer alguna operacion
+type Query {
+    # Students
+    findStudentById(studentId: String) : Student,
+    findAllStudents : [Student]
+
+    # Courses
+    findCourseById(courseId: String) : Course,
+    findAllCourses : [Course]
+}
+# Las mutaciones son metodos que permiten modificar algun valor ejm: crear, modificar, eliminar, alguna operacion en la db
+type Mutation {
+    # Students
+    createStudent(inputStudent: InputStudent!) : Student,
+    deleteStudentById(studentId: String) : String
+
+    # Courses
+    createCourse(inputCourse: InputCourse!) : Course
+    deleteCourseById(courseId: String) : String
+}
+
+type Student {
+    id: ID,
+    name: String,
+    lastName: String,
+    age: Int,
+    course: Course
+}
+#para enviar datos con un objeto en especifico , para ello se debe crear una clase
+input InputStudent {
+    name: String,
+    lastName: String,
+    age: Int,
+    courseId: String!
+}
+
+
+type Course {
+    id: ID,
+    name: String,
+    category: String,
+    teacher: String
+}
+
+input InputCourse {
+    name: String,
+    category: String,
+    teacher: String
+}
